@@ -25,7 +25,7 @@ $(function(){
             locale: 'ja',
             height: 'auto',
             firstDay: 1,
-            expandRows: true, // 画面に合わせて高さを再設定
+            expandRows: true,
             selectable: true,
             headerToolbar: {
                 left: "",
@@ -39,8 +39,7 @@ $(function(){
             },
             events: JSON.parse(birthday_json),
             eventClick: function(info) {
-                info.jsEvent.preventDefault(); // don't let the browser navigate
-
+                info.jsEvent.preventDefault();
                 if (info.event.url) {
                     window.open(info.event.url);
                 }
