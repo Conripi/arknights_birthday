@@ -1,5 +1,5 @@
 $(function(){
-    $.getJSON("./data/data.json", (data) => {
+    $.getJSON("https://conripi.github.io/arknights_birthday/data/data.json", (data) => {
         let birthday_data = [];
         let year = new Date().getFullYear();
 
@@ -11,8 +11,6 @@ $(function(){
             let json = {title: data[i].name, start: date, url: data[i].url};
             birthday_data.push(json);
         }
-
-
 
         //今日の誕生日
         for(let i = 0; i < birthday_data.length; i++){
