@@ -17,7 +17,7 @@ $(function(){
             if(birthday_data[i].start !== moment().format("YYYY-MM-DD")) continue;
 
             let url = birthday_data[i].url;
-            $("#today > .btn-group").append("<div><button style='margin-left: 20px;' type=\"button\" class=\"btn btn-lg btn-primary\" onclick=\"window.open('"+url+"', '_blank')\">"+birthday_data[i].title+"</button></div>")
+            $("#today > .btn-group").append("<p>aaaaaaaaaaa</p>")
         }
     })
 })
