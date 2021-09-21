@@ -17,7 +17,6 @@ $(function(){
 
         let birthday_json = JSON.stringify(birthday_data)
 
-        /*
         var calendarEl = document.getElementById("calendar");
         var calendar = new FullCalendar.Calendar(calendarEl, {
             dayCellContent: function(e) {
@@ -51,7 +50,7 @@ $(function(){
         $("calendar").addTouch();
 
         calendar.render();
-        */
+
 
         //今日の誕生日
         for(let i = 0; i < birthday_data.length; i++){
