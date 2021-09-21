@@ -3,8 +3,8 @@ $(function(){
 
 
     $.getJSON("https://conripi.github.io/arknights_birthday/data/data.json", (data) => {
-        $("#today > .btn-group").append("<p>aaaaa</p>");
-        
+        $("#today > .btn-group").append("<p>"+data[0].name+"</p>");
+
         /*
         let birthday_data = [];
         let year = new Date().getFullYear();
