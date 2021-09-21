@@ -55,9 +55,7 @@ $(function(){
         //今日の誕生日
         for(let i = 0; i < birthday_data.length; i++){
             if(birthday_data[i].start !== dayjs().format("YYYY-MM-DD")) continue;
-
             let url = birthday_data[i].url;
-            $("#today > .btn-group").append("<p>"+birthday_data[i].start+"</p>");
             $("#today > .btn-group").append("<div><button style='margin-left: 20px;' type=\"button\" class=\"btn btn-lg btn-primary\" onclick=\"window.open('"+url+"', '_blank')\">"+birthday_data[i].title+"</button></div>")
         }
     })
