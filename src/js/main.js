@@ -8,8 +8,8 @@ $(function(){
 
         for(let i = 0; i < data.length; i++){
             let date = year + "-" + data[i].birthday;
-            date = moment(date).format("YYYY-MM-DD");
-            if(date === moment(year+"-01-01").format("YYYY-MM-DD")) continue;
+            date = dayjs(date).format("YYYY-MM-DD");
+            if(date === dayjs(year+"-01-01").format("YYYY-MM-DD")) continue;
 
             let json = {title: data[i].name, start: date, url: data[i].url};
             birthday_data.push(json);
@@ -55,7 +55,7 @@ $(function(){
 
         //今日の誕生日
         for(let i = 0; i < birthday_data.length; i++){
-            if(birthday_data[i].start !== moment().format("YYYY-MM-DD")) continue;
+            if(birthday_data[i].start !== dayjs().format("YYYY-MM-DD")) continue;
 
             let url = birthday_data[i].url;
             $("#today > .btn-group").append("<p>"+birthday_data[i].start+"</p>");
