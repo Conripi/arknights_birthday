@@ -3,9 +3,6 @@ $(function(){
 
 
     $.getJSON("https://conripi.github.io/arknights_birthday/data/data.json", (data) => {
-        $("#today > .btn-group").append("<p>"+data[0].name+"</p>");
-
-        /*
         let birthday_data = [];
         let year = new Date().getFullYear();
 
@@ -17,8 +14,11 @@ $(function(){
             let json = {title: data[i].name, start: date, url: data[i].url};
             birthday_data.push(json);
         }
+        $("#today > .btn-group").append("<p>"+birthday_data[0].url+"</p>");
 
+/*
         let birthday_json = JSON.stringify(birthday_data)
+
 
         var calendarEl = document.getElementById("calendar");
         var calendar = new FullCalendar.Calendar(calendarEl, {
