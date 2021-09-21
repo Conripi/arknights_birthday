@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function (){
         });
 
         $("calendar").addTouch();
-        
+
         calendar.render();
 
         //今日の誕生日
