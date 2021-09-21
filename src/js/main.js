@@ -14,7 +14,7 @@ $(function(){
             let json = {title: data[i].name, start: date, url: data[i].url};
             birthday_data.push(json);
         }
-console.log(dayjs("9月"))
+        
         let birthday_json = JSON.stringify(birthday_data)
 
         var calendarEl = document.getElementById("calendar");
