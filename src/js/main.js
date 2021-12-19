@@ -1,6 +1,7 @@
+let calendar;
+let Default_Color = "rgb(55,136,216)";
+let Selcted_Color = "rgb(30,75,166)";
 $(function(){
-
-
 
     $.getJSON("https://conripi.github.io/arknights_birthday/data/data.json", (data) => {
         let birthday_data = [];
@@ -11,14 +12,14 @@ $(function(){
             date = dayjs(date).format("YYYY-MM-DD");
             if(date === dayjs(year+"-01-01").format("YYYY-MM-DD")) continue;
 
-            let json = {title: data[i].name, start: date, url: data[i].url};
+            let json = {display: 'block', id: data[i].name, title: data[i].name, start: date, url: data[i].url, color: Default_Color};
             birthday_data.push(json);
         }
         
         let birthday_json = JSON.stringify(birthday_data)
 
         var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        calendar = new FullCalendar.Calendar(calendarEl, {
             dayCellContent: function(e) {
                 e.dayNumberText = e.dayNumberText.replace('日', '');
             },
@@ -38,11 +39,16 @@ $(function(){
                 list: 'リスト'
             },
             events: JSON.parse(birthday_json),
-            eventClick: function(info) {
-                info.jsEvent.preventDefault();
-                if (info.event.url) {
-                    window.open(info.event.url);
-                }
+            eventMouseEnter: function(e) {
+                e.jsEvent.preventDefault();
+                //if (info.event.url) {
+                    //window.open(info.event.url);
+                    // ShowContextMenu(e);
+                //}
+                ShowContextMenu(e);
+            },
+            eventMouseLeave: function (e){
+                //HideContextMenu(e);
             },
         });
 
@@ -60,3 +66,37 @@ $(function(){
     })
 })
 
+var EventID;
+function ShowContextMenu(e){
+    e.event.setProp('backgroundColor', Selcted_Color);
+    $("#c").css("left", e.jsEvent.pageX - 30 + "px");
+    $("#c").css("top", e.jsEvent.pageY - 40 + "px");
+    $("#c").css("display", "block");
+    EventID = e.event.id;
+}
+
+function HideContextMenu(e){
+    $("#c").css("display", "none");
+    calendar.getEventById(EventID).setProp('backgroundColor', Default_Color);
+}
+
+
+$("#c").mouseleave(function (e) {
+    HideContextMenu();
+})
+
+$("#Wiki").click(function (e){
+    window.open(calendar.getEventById(EventID).url);
+})
+
+$("#Twitter").click(function (e){
+    window.open("https://twitter.com/search?q=%23アークナイツ%20"+EventID+"%20filter%3Amedia&src=typed_query&f=top");
+})
+
+$("#Pixiv").click(function (e){
+    window.open("https://www.pixiv.net/tags/"+EventID+"(アークナイツ)/artworks?s_mode=s_tag");
+})
+
+$("#Pixiv000user").click(function (e){
+    window.open("https://www.pixiv.net/tags/"+EventID+"(アークナイツ) 000user/artworks?s_mode=s_tag");
+})

@@ -1,0 +1,40 @@
+#c{
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 120px;
+    height: 130px;
+    background-color: #425270;
+    z-index: 100;
+    color: white;
+    font-family: "游ゴシック";
+    text-align: left;
+}
+
+
+.my-contextmenu {
+    display: none;
+    color: white;
+    position: fixed;
+    width: 200px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+    z-index: 1000;
+}
+.my-contextmenu.show {
+    display: block;
+}
+.my-contextmenu ul {
+    list-style: none;
+    padding: 10px 0;
+}
+.my-contextmenu ul li {
+    padding: 4px 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.my-contextmenu ul li:hover {
+    background-color: #0d2855;
+}
