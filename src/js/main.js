@@ -68,9 +68,10 @@ $(function(){
 
 var EventID;
 function ShowContextMenu(e){
+    console.log(e);
     e.event.setProp('backgroundColor', Selcted_Color);
-    $("#c").css("left", e.jsEvent.pageX - 30 + "px");
-    $("#c").css("top", e.jsEvent.pageY - 40 + "px");
+    $("#c").css("left", e.jsEvent.clientX - 30 + "px");
+    $("#c").css("top", e.jsEvent.clientY - 40 + "px");
     $("#c").css("display", "block");
     EventID = e.event.id;
 }
