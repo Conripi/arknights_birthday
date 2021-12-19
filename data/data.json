@@ -870,7 +870,7 @@
         "rank": "★4"
     },
     {
-        "name": "ジャッキー",
+        "name": "コードネーム",
         "birthday": "9-15",
         "url": "https://arknights.wikiru.jp:443/index.php?%A5%B8%A5%E3%A5%C3%A5%AD%A1%BC",
         "rank": "★4"
@@ -1021,7 +1021,7 @@
     },
     {
         "name": "ススーロ",
-        "birthday": "9-4",
+        "birthday": "",
         "url": "https://arknights.wikiru.jp:443/index.php?%A5%B9%A5%B9%A1%BC%A5%ED",
         "rank": "★4"
     },
@@ -1270,5 +1270,11 @@
         "birthday": "2-15",
         "url": "https://arknights.wikiru.jp:443/index.php?THRM-EX",
         "rank": "★1"
+    },
+    {
+        "name": "トギフォンス",
+        "birthday": "7-31",
+        "url": "https://arknights.wikiru.jp/index.php?%A5%C8%A5%AE%A5%D5%A5%A9%A5%F3%A5%B9",
+        "rank": "★5"
     }
 ]
