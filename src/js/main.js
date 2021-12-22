@@ -1,12 +1,24 @@
 let calendar;
 let Default_Color = "rgb(55,136,216)";
 let Selcted_Color = "rgb(30,75,166)";
+let String_Selected_Color = "rgb(255,35,177)";
+
+let year = new Date().getFullYear();
+let DATA_J;
+
+function hiraToKana(str) {
+    return str.replace(/[\u3041-\u3096]/g, function(match) {
+        var chr = match.charCodeAt(0) + 0x60;
+        return String.fromCharCode(chr);
+    });
+}
+
 $(function(){
 
     $.getJSON("https://conripi.github.io/arknights_birthday/data/data.json", (data) => {
-        let birthday_data = [];
-        let year = new Date().getFullYear();
+        DATA_J = data;
 
+        let birthday_data = [];
         for(let i = 0; i < data.length; i++){
             let date = year + "-" + data[i].birthday;
             date = dayjs(date).format("YYYY-MM-DD");
@@ -100,4 +112,55 @@ $("#Pixiv").click(function (e){
 
 $("#Pixiv000user").click(function (e){
     window.open("https://www.pixiv.net/tags/"+EventID+"(アークナイツ) 000user/artworks?s_mode=s_tag");
+})
+
+
+
+SearchWord = function (){
+    let HitSearth = [];
+    $("#SearthBox").css("display", "none");
+    $("#SearthBox > ul > li").remove();
+    //検索候補を検索欄の下に移動
+    let SearthTextBoxLocation = $("#serchbox").offset();
+    $("#SearthBox").css("left", SearthTextBoxLocation.left + "px");
+    $("#SearthBox").css("top", SearthTextBoxLocation.top + 40+ "px");
+
+    var SearchText = $("#serchbox").val();
+    if(SearchText == "") return;
+    SearchText = hiraToKana(SearchText);
+
+    for (let i = 0; i < DATA_J.length; i++) {
+        if(DATA_J[i].name.indexOf(SearchText) > -1) {
+            if (HitSearth.length < 4) {
+                HitSearth.push({data: DATA_J[i], index: i});
+            }
+        }
+    }
+
+    for (let i = 0; i < HitSearth.length; i++) {
+        $("#SearthBox > ul").append("<li id='Searth"+ i + "' onclick='MoveCalendor("+HitSearth[i].index+")'>" + HitSearth[i].data.name +"</li>");
+    }
+
+    if(HitSearth.length > 0) $("#SearthBox").css("display", "block");
+}
+
+let Searth_Selected_Event_Name = "";
+function MoveCalendor(index){
+    let data = DATA_J[index];
+    let birthday_year = year + "-" + data.birthday;
+    let birthday = dayjs(birthday_year).format("YYYY-MM-DD");
+    calendar.gotoDate(birthday);
+    calendar.getEventById(data.name).setProp('backgroundColor', String_Selected_Color);
+
+    if(Searth_Selected_Event_Name != "") calendar.getEventById(Searth_Selected_Event_Name).setProp('backgroundColor', Default_Color);
+    Searth_Selected_Event_Name = data.name;
+}
+
+//検索欄の文字が入力されたとき
+$("#serchbox").on("input", SearchWord);
+
+//スクロールしたときに検索候補を消す
+$(window).scroll(function (e){
+    //検索候補の削除
+    $("#SearthBox").css("display", "none");
 })
